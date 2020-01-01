@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 """Prints all the files which are having file size greater than the limit given."""
 import os
 import sys
@@ -6,7 +7,6 @@ import re
 import argparse
 
 
-# 1GB = 1e+9 bytes
 def consumers(path, limit, o_file):
     try:
         filenames = os.listdir(path)
@@ -15,6 +15,7 @@ def consumers(path, limit, o_file):
     output_lines = []
     if len(filenames) != 0:
         for filename in filenames:
+            # For ignoring the hidden files
             match_dot_obj = re.compile(r'^[.]\w*')
             if match_dot_obj.search(filename) is None:
                 file_path = os.path.join(path, filename)
